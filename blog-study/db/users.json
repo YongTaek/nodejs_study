@@ -1,0 +1,11 @@
+[
+{
+	"email": "ka123ak1@gmail.com",
+	"password" : "1111",
+	"admin" : true
+},
+{
+	"email": "ka123ak1@naver.com",
+	"password" : "2222",
+	"admin" : false
+}]

@@ -1,0 +1,20 @@
+extends layout
+
+mixin comment(items)
+	each item in items
+		p= item['date']
+		p= item['content']
+	
+block content
+	p
+		h1= title
+		p= text
+
+	form.form-horizontal(action="/comment/"+slug, method="POST")
+		div.form-group
+			p.col-sm-10
+				input.form-control(name="content", type="text", placeholder="commnet")
+			p.col-sm-2
+				button.btn.btn-lg.btn-primary.btn-block(type="submit") Add
+	div.col-md-12
+		+comment(comments)

@@ -1,0 +1,5 @@
+{
+	url: "/logout",
+	isActive: true,
+	isChecked: false
+}

@@ -1,0 +1,6 @@
+{{#with user}}
+	<p>{{name}}</p>
+	{{#with contact}}
+		<span>Twitter: @{{twitter}}</span>
+	{{/with}}
+	<span>Address: {{address.city}}, {{/with}}{{user.address.state}}</span>
