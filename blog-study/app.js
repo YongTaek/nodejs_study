@@ -3,14 +3,11 @@ var express = require('express')
   , routes = require('./routes')
   , config = require('./config')
   , path = require('path')
-  , mongoskin = require('mongoskin')
+  , mongoose = require('mongoose')
+  , models = require('./models')
   , favicon = require('serve-favicon')
-  , dbUrl = process.env.MONGOHQ_URL || 'mongodb://@localhost:27017/blog'
-  , db = mongoskin.db(dbUrl, {safe: true})
-  , collections = {
-      articles: db.collection('articles')
-    , users: db.collection('users')
-  }
+  , dbUrl = process.env.MONGOHQ_URL || 'mongodb://localhost:27017/blog'
+  , db = mongoose.connect(dbUrl, {safe: true})
   , everyauth = require('everyauth')
 
 // Express.js 미들웨어
@@ -53,8 +50,8 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
 
 app.use(function(req, res, next) {
-  if (!collections.articles || ! collections.users) return next(new Error("No collections."))
-    req.collections = collections;
+  if (!models.Article || ! models.User) return next(new Error("No collections."))
+    req.models = models;
   return next();
 });
 
